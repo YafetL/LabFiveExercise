@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="calculatorstyle.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Calculator</title>
 </head>
 <body>
 
     <div id="calcBody">
         <div id="displayScreen">
-            <div id="historyScreen"></div>
+            <div id="historyScreen">0</div>
             <div id="displayText">0</div>
         </div>
 
         <div id="inputs">
             <div class="float-container">
-                <div class="float-child"><div id="clearScreen">CE</div></div>
+                <div class="float-child"><div id="powerOf">^</div></div>
                 <div class="float-child"><div id="divide">/</div></div>
                 <div class="float-child"><div id="multiply">x</div></div>
                 <div class="float-child"><div id="minus">-</div></div>                
@@ -25,28 +25,28 @@
                 <div class="float-child"><div id="seven">7</div></div>
                 <div class="float-child"><div id="eight">8</div></div>
                 <div class="float-child"><div id="nine">9</div></div>
-                <div class="float-child"><div id="pluss">+++</div></div>                
+                <div class="float-child"><div id="pluss">+++</div></div>
             </div>
             <div class="float-container">
                 <div class="float-child"><div id="four">4</div></div>
                 <div class="float-child"><div id="five">5</div></div>
                 <div class="float-child"><div id="six">6</div></div>
-                <div class="float-child"><div id="plus">+</div></div>                
+                <div class="float-child" id="longPlus"><div id="plus">+</div></div>                
             </div>
             <div class="float-container">
                 <div class="float-child"><div id="one">1</div></div>
                 <div class="float-child"><div id="two">2</div></div>
                 <div class="float-child"><div id="three">3</div></div>
-                <div class="float-child"><div id="equal">===</div></div>                
+                <div class="float-child"><div id="equal">===</div></div>
             </div>
             <div class="float-container">
+                <div class="float-child"><div id="clearScreen">CE</div></div>
                 <div class="float-child"><div id="zero">0</div></div>
-                <div class="float-child"><div id="zeroo">000</div></div>
                 <div class="float-child"><div id="dot">.</div></div>
-                <div class="float-child"><div id="equals">=</div></div>                
+                <div class="float-child" id="longEquals"><div id="equals">=</div></div>                
             </div>
         </div>
     </div>
-    <script src="calculatorjs.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
