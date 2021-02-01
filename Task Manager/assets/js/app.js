@@ -92,7 +92,17 @@ function filterTasks() {
     
     
     */
-
+    var input, li;
+    input = document.getElementById("filter");
+    li = document.querySelectorAll(".collection-item");
+    li.forEach(element => {
+        if(element.textContent.toUpperCase().indexOf(input.value.toUpperCase()) > -1){
+            element.style.display = "block";
+        }
+        else{
+            element.style.display = "none";
+        }
+    });
 
 }
 
