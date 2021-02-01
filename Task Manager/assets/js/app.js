@@ -78,7 +78,7 @@ function clearAllTasks() {
 
 
 // Filter tasks function definition 
-function filterTasks(e) {
+function filterTasks() {
 
     /*  
     Instruction for Handling the Search/filter 
@@ -92,6 +92,7 @@ function filterTasks(e) {
     
     
     */
+
 
 }
 

@@ -18,13 +18,38 @@ Good Luck !!!
 
 
 // Define UI Variables  here 
+var href = location.href;
+var prot = location.protocol;
+var hst = location.host;
+var prt = location.port;
+var host_name = location.hostname;
 
+var app_name = navigator.appName;
+var app_version = navigator.appVersion;
+var ptform = navigator.platform;
+var lang = navigator.language;
+var cookie_enabled = navigator.cookieEnabled;
 
+var hgt = screen.height;
+var wdh = screen.width;
+var pixel_depth = screen.pixelDepth;
 
-
-
-
-
-
+var lgth = history.length;
+var stt = history.state;
 
 // Display the BOM Information on the innerHTML of the elements
+document.getElementById("href").textContent = href;
+document.getElementById("protocol").textContent = prot;
+document.getElementById("host").textContent = hst;
+document.getElementById("port").textContent = prt;
+document.getElementById("hostname").textContent = host_name;
+document.getElementById("appname").textContent = app_name;
+document.getElementById("appversion").textContent = app_version;
+document.getElementById("platform").textContent = ptform;
+document.getElementById("language").textContent = lang;
+document.getElementById("cookieenabled").textContent = cookie_enabled;
+document.getElementById("height").textContent = hgt;
+document.getElementById("width").textContent = wdh;
+document.getElementById("pixeldepth").textContent = pixel_depth;
+document.getElementById("length").textContent = lgth;
+document.getElementById("state").textContent = stt;
