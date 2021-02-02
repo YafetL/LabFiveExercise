@@ -58,6 +58,12 @@
     text-align: center;
 }
 
+.oprButton:hover{
+    background-color: rgb(121, 92, 49);
+}
+.numButton:hover{
+    background-color: rgb(44, 71, 23);
+}
 /*
 #longPlus{
     float: left;

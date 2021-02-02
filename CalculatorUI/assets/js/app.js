@@ -14,10 +14,10 @@ function skipStep(){
     if(numArray[1] == "+"){
         value = numArray[0] + numArray[2];
     }
-    else if(numArray[1] == "x"){
+    else if(numArray[1] == "x" || numArray[1] == "*"){
         value = (numArray[0]) * (numArray[2]);
     }
-    else if(numArray[1] == "/"){
+    else if(numArray[1] == "/" || numArray[1] == "//"){
         value = (numArray[0]) / (numArray[2]);
     }
     else if(numArray[1] == "-"){
@@ -42,13 +42,20 @@ function equals() {
         document.getElementById("historyScreen").innerHTML += value;
         numArray = [];
     }
-    else if(numArray[1] == "/"){
-        value = numArray[0] / numArray[2];
-        document.getElementById("displayText").innerHTML = String(value);
-        document.getElementById("historyScreen").innerHTML += value;
-        numArray = [];
+    else if(numArray[1] == "/" || numArray[1] == "//"){
+        if(numArray[2] != 0){
+            value = numArray[0] / numArray[2];
+            document.getElementById("displayText").innerHTML = String(value);
+            document.getElementById("historyScreen").innerHTML += value;
+            numArray = [];
+        }
+        else{
+            document.getElementById("displayText").innerHTML = "MATH ERROR";
+            document.getElementById("historyScreen").innerHTML = '';
+            numArray = [];
+        }
     }
-    else if(numArray[1] == "x"){
+    else if(numArray[1] == "x" || numArray[1] == "*"){
         value = numArray[0] * numArray[2];
         document.getElementById("displayText").innerHTML = String(value);
         document.getElementById("historyScreen").innerHTML += value;
@@ -61,7 +68,7 @@ function equals() {
 }
 
 var numArray = [];
-var opArray = ["+","-","/","x"];
+var opArray = ["+","-","/","x","*","//"];
 const numberButton = document.querySelectorAll(".numButton > p");
 const operatorButton = document.querySelectorAll(".oprButton > p");
 const displayed = document.querySelector(".displayInput");
@@ -73,7 +80,15 @@ numberButton.forEach(element => {
         if(displayed.innerHTML == "0" && element.innerHTML != "." && numArray.length == 0){
             return;
         }
-        // displayed.append(element.innerHTML);
+        if(displayed.innerHTML == "MATH ERROR"){
+            displayed.innerHTML = '';
+        }
+        if(displayed.innerHTML == "0"){
+            displayed.innerHTML = "";
+            displayed.append(element.innerHTML);
+            document.getElementById("historyScreen").innerHTML += element.innerHTML;
+            return;
+        }
         displayed.append(element.innerHTML);
         document.getElementById("historyScreen").innerHTML += element.innerHTML;
     });
@@ -83,6 +98,9 @@ operatorButton.forEach(element => {
     element.addEventListener('click', () => {
         numArray.push(parseFloat(displayed.innerHTML.toString()));
         console.log(element.innerHTML)
+        if(numArray == []){
+            return
+        }
         if(element.innerHTML == "="){
             document.getElementById("historyScreen").innerHTML += element.innerHTML.toString();
             equals();
@@ -95,8 +113,10 @@ operatorButton.forEach(element => {
         else if(numArray.length == 3){
             value = skipStep();
             // displayed.innerHTML = value;
+            if(displayed.innerHTML == "0"){document.getElementById("historyScreen").innerHTML += "0 =" + (value.toString()).bold() + element.innerHTML.toString();}
+            else{document.getElementById("historyScreen").innerHTML += "=" + (value.toString()).bold() + element.innerHTML.toString();}
+            // document.getElementById("historyScreen").innerHTML += "=" + (value.toString()).bold() + element.innerHTML.toString();
             displayed.innerHTML = "0";
-            document.getElementById("historyScreen").innerHTML += "=" + (value.toString()).bold() + element.innerHTML.toString();
             numArray = [];
             numArray.push(value);
             numArray.push(element.innerHTML.toString());

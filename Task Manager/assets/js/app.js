@@ -6,6 +6,10 @@ const taskList = document.querySelector('.collection'); //The UL
 const clearBtn = document.querySelector('.clear-tasks'); //the all task clear button
 
 const reloadIcon = document.querySelector('.fa'); //the reload button at the top navigation 
+reloadIcon.addEventListener('click', reloadPage);
+var ulList = [];
+const sortDown = document.querySelector("#dsend");
+const sortUp = document.querySelector("#asend");
 
 // Add Event Listener  [Form , clearBtn and filter search input ]
 
@@ -18,7 +22,7 @@ filter.addEventListener('keyup', filterTasks);
 // Remove task event [event delegation]
 taskList.addEventListener('click', removeTask);
 // Event Listener for reload 
-reloadIcon.addEventListener('click', reloadPage);
+
 
 
 
@@ -53,12 +57,18 @@ function addNewTask(e) {
     // Append to UL 
     taskList.appendChild(li);
 
-
+    ulList.push(addDate(new Date().getTime(), li));
 
 
 }
 
 
+var addDate = function(date, li){
+    var obj = {};
+    obj.date = date;
+    obj.li = li;
+    return obj;
+}
 
 
 
@@ -75,7 +85,43 @@ function clearAllTasks() {
 
 }
 
+//Sorting
+function assendingSort(theArray){
+    for(let i = 0; i < theArray.length; i++){
+        var currentMin = theArray[i].date;
+        var currentMin = i;
+        for(let j = i + 1; j < theArray.length; j++){
+            if(theArray[j].date < currentMin.date){
+                currentMinIndex = j;
+            }
+        }
+        if(i != currentMinIndex){
+            var swap = theArray[i];
+            theArray[i] = theArray[currentMinIndex];
+            theArray[currentMinIndex] = swap;
+        }
+    }
+}
 
+assendingSort(ulList);
+sortUp.addEventListener('click', () => {
+    clearAllTasks();
+    ulList.forEach(element => {
+        taskList.appendChild(element.li);
+    })
+});
+
+sortDown.addEventListener('click', () => {
+    clearAllTasks();
+    for(let i = ulList.length - 1; i >=0; i--){
+        taskList.appendChild(ulList[i].li);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(elems, constrainWidth = false);
+});
 
 // Filter tasks function definition 
 function filterTasks() {
